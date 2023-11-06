@@ -9,4 +9,12 @@ public class Grass extends Entity {
     public Grass(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
 }
