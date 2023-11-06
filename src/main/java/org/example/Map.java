@@ -83,4 +83,17 @@ public class Map {
     public void setHeight(int height) {
         this.height = height;
     }
+
+    @Override
+    public String toString() {
+        return "Map{" +
+                "herbivores=" + herbivores +
+                ",\n predators=" + predators +
+                ",\n grasses=" + grasses +
+                ",\n rocks=" + rocks +
+                ",\n trees=" + trees +
+                ",\n width=" + width +
+                ",\n height=" + height +
+                '}';
+    }
 }

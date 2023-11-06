@@ -34,5 +34,7 @@ public abstract class Creature extends Entity {
         this.coordinates = coordinates;
     }
 
+
+
     public abstract void makeMove();
 }

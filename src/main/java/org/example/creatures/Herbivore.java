@@ -9,6 +9,14 @@ public class Herbivore extends Creature {
     }
 
     @Override
+    public String toString() {
+        return "Herbivore{" +
+                "x=" + coordinates.getX() +
+                " y=" + coordinates.getY() +
+                '}';
+    }
+
+    @Override
     public void makeMove() {
 
     }

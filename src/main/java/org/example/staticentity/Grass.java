@@ -17,4 +17,12 @@ public class Grass extends Entity {
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
+
+    @Override
+    public String toString() {
+        return "Grass{" +
+                "x=" + coordinates.getX() +
+                " y=" + coordinates.getY() +
+                '}';
+    }
 }

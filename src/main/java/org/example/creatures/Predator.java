@@ -10,6 +10,15 @@ public class Predator extends Creature {
         super(velocity,life,coordinates);
         this.attackPower = attackPower;
     }
+
+    @Override
+    public String toString() {
+        return "Predator{" +
+                "x=" + coordinates.getX() +
+                " y=" + coordinates.getY() +
+                '}';
+    }
+
     @Override
     public void makeMove() {
 
