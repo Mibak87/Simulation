@@ -7,6 +7,7 @@ import org.example.staticentity.Grass;
 import org.example.staticentity.Rock;
 import org.example.staticentity.Tree;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,65 +28,39 @@ public class Simulation {
 
     public void startSimulation() {
         map = new Map(10,10);
+        HashMap<Coordinates,Entity> newMap = map.getMap();
+        if (newMap == null) {
+            newMap = new HashMap<>();
+        }
         //Creation grass entity
         for (int i = 1; i <= countGrass; i++) {
             Grass grass = new Grass(generateCoordinates());
-            Set<Grass> grasses = map.getGrasses();
-            if (grasses != null) {
-                grasses.add(grass);
-            } else {
-                grasses = new HashSet<>();
-                grasses.add(grass);
-            }
-            map.setGrasses(grasses);
+            newMap.put(grass.getCoordinates(),grass);
+            map.setMap(newMap);
         }
         //Creation rock entity
         for (int i = 1; i <= countRock; i++) {
             Rock rock = new Rock(generateCoordinates());
-            Set<Rock> rocks = map.getRocks();
-            if (rocks != null) {
-                rocks.add(rock);
-            } else {
-                rocks = new HashSet<>();
-                rocks.add(rock);
-            }
-            map.setRocks(rocks);
+            newMap.put(rock.getCoordinates(),rock);
+            map.setMap(newMap);
         }
         //Creation tree entity
         for (int i = 1; i <= countTree; i++) {
             Tree tree = new Tree(generateCoordinates());
-            Set<Tree> trees = map.getTrees();
-            if (trees != null) {
-                trees.add(tree);
-            } else {
-                trees = new HashSet<>();
-                trees.add(tree);
-            }
-            map.setTrees(trees);
+            newMap.put(tree.getCoordinates(),tree);
+            map.setMap(newMap);
         }
         //Creation herbivore entity
         for (int i = 1; i <= countHerbivore; i++) {
             Herbivore herbivore = new Herbivore(2,2, generateCoordinates());
-            Set<Herbivore> herbivores = map.getHerbivores();
-            if (herbivores != null) {
-                herbivores.add(herbivore);
-            } else {
-                herbivores = new HashSet<>();
-                herbivores.add(herbivore);
-            }
-            map.setHerbivores(herbivores);
+            newMap.put(herbivore.getCoordinates(),herbivore);
+            map.setMap(newMap);
         }
         //Creation predator entity
         for (int i = 1; i <= countPredator; i++) {
             Predator predator = new Predator(3,2,1, generateCoordinates());
-            Set<Predator> predators = map.getPredators();
-            if (predators != null) {
-                predators.add(predator);
-            } else {
-                predators = new HashSet<>();
-                predators.add(predator);
-            }
-            map.setPredators(predators);
+            newMap.put(predator.getCoordinates(),predator);
+            map.setMap(newMap);
         }
         System.out.println(map.toString());
     }
@@ -107,7 +82,13 @@ public class Simulation {
     }
 
     private boolean checkCoordinates(Coordinates coordinates) {
-        Set<Grass> grasses = map.getGrasses();
+        HashMap<Coordinates,Entity> tempMap = map.getMap();
+        if (tempMap != null && tempMap.containsKey(coordinates)) {
+            return false;
+        } else {
+            return true;
+        }
+        /*Set<Grass> grasses = map.getGrasses();
         Set<Rock> rocks = map.getRocks();
         Set<Tree> trees = map.getTrees();
         Set<Predator> predators = map.getPredators();
@@ -148,6 +129,7 @@ public class Simulation {
             }
         }
         return true;
+         */
     }
 
     public static void main(String[] args) {
