@@ -62,7 +62,9 @@ public class Simulation {
             newMap.put(predator.getCoordinates(),predator);
             map.setMap(newMap);
         }
-        System.out.println(map.toString());
+        //System.out.println(map.toString());
+        render = new Render();
+        render.mapUpdate(map);
     }
 
     public void pauseSimulation() {
@@ -88,48 +90,6 @@ public class Simulation {
         } else {
             return true;
         }
-        /*Set<Grass> grasses = map.getGrasses();
-        Set<Rock> rocks = map.getRocks();
-        Set<Tree> trees = map.getTrees();
-        Set<Predator> predators = map.getPredators();
-        Set<Herbivore> herbivores = map.getHerbivores();
-        if (grasses != null) {
-            for (Grass grass : grasses) {
-                if (coordinates.equals(grass.getCoordinates())) {
-                    return false;
-                }
-            }
-        }
-        if (rocks != null) {
-            for (Rock rock : rocks) {
-                if (coordinates.equals(rock.getCoordinates())) {
-                    return false;
-                }
-            }
-        }
-        if (trees != null) {
-            for (Tree tree : trees) {
-                if (coordinates.equals(tree.getCoordinates())) {
-                    return false;
-                }
-            }
-        }
-        if (predators != null) {
-            for (Predator predator : predators) {
-                if (coordinates.equals(predator.getCoordinates())) {
-                    return false;
-                }
-            }
-        }
-        if (herbivores != null) {
-            for (Herbivore herbivore : herbivores) {
-                if (coordinates.equals(herbivore.getCoordinates())) {
-                    return false;
-                }
-            }
-        }
-        return true;
-         */
     }
 
     public static void main(String[] args) {
