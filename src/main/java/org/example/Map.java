@@ -28,7 +28,7 @@ public class Map {
     public void setMap(HashMap<Coordinates, Entity> map) {
         this.map = map;
     }
-    
+
 
     public int getWidth() {
         return width;
