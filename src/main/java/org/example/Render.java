@@ -14,22 +14,22 @@ public class Render {
                 if (map.getMap().containsKey(currentCoordinates)) {
                     Entity entity = map.getMap().get(currentCoordinates);
                     if (entity instanceof Grass) {
-                        System.out.print("G");
+                        System.out.print("\uD83C\uDF40");
                     }
                     if (entity instanceof Rock) {
-                        System.out.print("R");
+                        System.out.print("⬛");
                     }
                     if (entity instanceof Tree) {
-                        System.out.print("T");
+                        System.out.print("\uD83C\uDF33");
                     }
                     if (entity instanceof Herbivore) {
-                        System.out.print("H");
+                        System.out.print("\uD83D\uDC2E");
                     }
                     if (entity instanceof Predator) {
-                        System.out.print("P");
+                        System.out.print("\uD83D\uDC3A");
                     }
                 } else {
-                    System.out.print("O");
+                    System.out.print("⬜");
                 }
             }
             System.out.println();
