@@ -2,9 +2,9 @@ package org.example;
 
 import org.example.creatures.Herbivore;
 import org.example.creatures.Predator;
-import org.example.staticentity.Grass;
-import org.example.staticentity.Rock;
-import org.example.staticentity.Tree;
+import org.example.statics.Grass;
+import org.example.statics.Rock;
+import org.example.statics.Tree;
 
 public class Render {
     public void mapUpdate(Map map) {

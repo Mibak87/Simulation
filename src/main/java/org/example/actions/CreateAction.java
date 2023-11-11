@@ -6,9 +6,9 @@ import org.example.Map;
 import org.example.Simulation;
 import org.example.creatures.Herbivore;
 import org.example.creatures.Predator;
-import org.example.staticentity.Grass;
-import org.example.staticentity.Rock;
-import org.example.staticentity.Tree;
+import org.example.statics.Grass;
+import org.example.statics.Rock;
+import org.example.statics.Tree;
 
 import java.util.HashMap;
 

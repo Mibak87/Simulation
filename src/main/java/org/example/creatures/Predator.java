@@ -11,6 +11,10 @@ public class Predator extends Creature {
         this.attackPower = attackPower;
     }
 
+    public int getAttackPower() {
+        return attackPower;
+    }
+
     @Override
     public String toString() {
         return "Predator{" +

@@ -1,4 +1,4 @@
-package org.example.staticentity;
+package org.example.statics;
 
 import org.example.Coordinates;
 import org.example.Entity;

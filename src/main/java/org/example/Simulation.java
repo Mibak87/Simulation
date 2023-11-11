@@ -2,15 +2,6 @@ package org.example;
 
 
 import org.example.actions.CreateAction;
-import org.example.creatures.Herbivore;
-import org.example.creatures.Predator;
-import org.example.staticentity.Grass;
-import org.example.staticentity.Rock;
-import org.example.staticentity.Tree;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Simulation {
     private Map map;
