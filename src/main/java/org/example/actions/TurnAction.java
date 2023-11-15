@@ -22,24 +22,20 @@ public class TurnAction {
             for (Coordinates coordinates: mapEntity.keySet()) {
                 if (mapEntity.get(coordinates) instanceof Herbivore) {
                     Herbivore herbivore = (Herbivore) mapEntity.get(coordinates);
-                    mapEntity.remove(coordinates);
-                    herbivore.makeMove();
-                    if (mapEntity.containsKey(herbivore.getCoordinates())) {
-                        mapEntity.put(herbivore.getCoordinates(),herbivore);
-                    }
+                    herbivore.makeMove(map);
+                    mapEntity = map.getMap();
                 }
             }
         } else {
             for (Coordinates coordinates: mapEntity.keySet()) {
                 if (mapEntity.get(coordinates) instanceof Predator) {
                     Predator predator = (Predator) mapEntity.get(coordinates);
-                    predator.makeMove();
+                    predator.makeMove(map);
                     Coordinates newCoordinates = predator.getCoordinates();
                     if (mapEntity.containsKey(newCoordinates)) {
                         Herbivore herbivore = (Herbivore) mapEntity.get(newCoordinates);
                         int herbivoreLife = herbivore.getLife() - predator.getAttackPower();
                         if (isHerbivoreDie(herbivoreLife)) {
-                            mapEntity.remove(coordinates);
                             mapEntity.put(newCoordinates,predator);
                         } else {
                             herbivore.setLife(herbivoreLife);
