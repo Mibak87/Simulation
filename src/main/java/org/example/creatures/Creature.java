@@ -2,6 +2,7 @@ package org.example.creatures;
 
 import org.example.Coordinates;
 import org.example.Entity;
+import org.example.Map;
 
 public abstract class Creature extends Entity {
     protected final int velocity;
@@ -36,5 +37,5 @@ public abstract class Creature extends Entity {
 
 
 
-    public abstract void makeMove();
+    public abstract void makeMove(Map map);
 }

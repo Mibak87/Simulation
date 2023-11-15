@@ -81,7 +81,7 @@ public class Map {
         return herbivoreCoordinates;
     }
 
-    private int findPathLength(Coordinates coordinates1, Coordinates coordinates2) {
+    public int findPathLength(Coordinates coordinates1, Coordinates coordinates2) {
         int deltaX = Math.abs(coordinates1.getX() - coordinates2.getX());
         int deltaY = Math.abs(coordinates1.getY() - coordinates2.getY());
         return (int) Math.sqrt(deltaY * deltaY + deltaX * deltaX);

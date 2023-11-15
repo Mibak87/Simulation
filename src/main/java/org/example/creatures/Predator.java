@@ -1,6 +1,7 @@
 package org.example.creatures;
 
 import org.example.Coordinates;
+import org.example.Map;
 import org.example.creatures.Creature;
 
 public class Predator extends Creature {
@@ -24,7 +25,7 @@ public class Predator extends Creature {
     }
 
     @Override
-    public void makeMove() {
+    public void makeMove(Map map) {
 
     }
 }
