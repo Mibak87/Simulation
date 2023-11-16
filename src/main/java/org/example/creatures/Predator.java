@@ -1,8 +1,11 @@
 package org.example.creatures;
 
 import org.example.Coordinates;
+import org.example.Entity;
 import org.example.Map;
 import org.example.creatures.Creature;
+
+import java.util.HashMap;
 
 public class Predator extends Creature {
     private final int attackPower;
@@ -26,6 +29,44 @@ public class Predator extends Creature {
 
     @Override
     public void makeMove(Map map) {
-
+        HashMap<Coordinates, Entity> currentMap = map.getMap();
+        for (int i = 1; i <= this.velocity; i++) {
+            Coordinates herbivoreCoordinates = map.findNearestEntity(this);
+            Coordinates moveByY = this.coordinates;
+            Coordinates moveByX = this.coordinates;
+            int y = this.coordinates.getY();
+            int x = this.coordinates.getX();
+            if (herbivoreCoordinates.getY() > y) {
+                moveByY.setY(y + 1);
+            } else if (herbivoreCoordinates.getY() < y) {
+                moveByY.setY(y - 1);
+            }
+            if (herbivoreCoordinates.getX() > x) {
+                moveByX.setX(x + 1);
+            } else if (herbivoreCoordinates.getX() < x) {
+                moveByX.setX(x - 1);
+            }
+            if (map.findPathLength(moveByX, herbivoreCoordinates) >= map.findPathLength(moveByY, herbivoreCoordinates)) {
+                if (!currentMap.containsKey(moveByY) && moveByY.equals(herbivoreCoordinates)) {
+                    this.setCoordinates(moveByY);
+                }
+            } else {
+                if (!currentMap.containsKey(moveByX) && moveByX.equals(herbivoreCoordinates)) {
+                    this.setCoordinates(moveByX);
+                }
+            }
+            if (this.coordinates.equals(herbivoreCoordinates)) {
+                Herbivore herbivore = (Herbivore) currentMap.get(herbivoreCoordinates);
+                if (herbivore.life <= this.attackPower) {
+                    currentMap.remove(new Coordinates(x, y), this);
+                    currentMap.put(this.coordinates, this);
+                } else {
+                    herbivore.setLife(herbivore.life - this.attackPower);
+                    currentMap.put(herbivoreCoordinates,herbivore);
+                    this.setCoordinates(new Coordinates(x,y));
+                }
+            }
+            map.setMap(currentMap);
+        }
     }
 }

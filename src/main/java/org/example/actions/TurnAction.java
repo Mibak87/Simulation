@@ -31,31 +31,9 @@ public class TurnAction {
                 if (mapEntity.get(coordinates) instanceof Predator) {
                     Predator predator = (Predator) mapEntity.get(coordinates);
                     predator.makeMove(map);
-                    Coordinates newCoordinates = predator.getCoordinates();
-                    if (mapEntity.containsKey(newCoordinates)) {
-                        Herbivore herbivore = (Herbivore) mapEntity.get(newCoordinates);
-                        int herbivoreLife = herbivore.getLife() - predator.getAttackPower();
-                        if (isHerbivoreDie(herbivoreLife)) {
-                            mapEntity.put(newCoordinates,predator);
-                        } else {
-                            herbivore.setLife(herbivoreLife);
-                            mapEntity.put(newCoordinates,herbivore);
-                            mapEntity.put(coordinates,predator);
-                        }
-                    } else {
-                        mapEntity.put(newCoordinates,predator);
-                    }
+                    mapEntity = map.getMap();
                 }
             }
-        }
-    }
-
-    private boolean isHerbivoreDie(int herbivoreLife) {
-
-        if (herbivoreLife <= 0) {
-            return true;
-        } else {
-            return false;
         }
     }
 }
