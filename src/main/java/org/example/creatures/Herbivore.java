@@ -13,6 +13,10 @@ public class Herbivore extends Creature {
         super(velocity,life,coordinates);
     }
 
+    public int getMaxLife() {
+        return maxLife;
+    }
+
     @Override
     public String toString() {
         return "Herbivore{" +
@@ -41,20 +45,21 @@ public class Herbivore extends Creature {
                 moveByX.setX(x - 1);
             }
             if (map.findPathLength(moveByX, grassCoordinates) >= map.findPathLength(moveByY, grassCoordinates)) {
-                if (!currentMap.containsKey(moveByY) && moveByY.equals(grassCoordinates)) {
+                if (!currentMap.containsKey(moveByY) || moveByY.equals(grassCoordinates)) {
                     this.setCoordinates(moveByY);
                 }
             } else {
-                if (!currentMap.containsKey(moveByX) && moveByX.equals(grassCoordinates)) {
+                if (!currentMap.containsKey(moveByX) || moveByX.equals(grassCoordinates)) {
                     this.setCoordinates(moveByX);
                 }
             }
-            if (this.coordinates.equals(grassCoordinates) & this.life < maxLife) {
+            /*if (this.coordinates.equals(grassCoordinates) & this.life < maxLife) {
                 this.life++;
             }
             currentMap.remove(new Coordinates(x, y), this);
             currentMap.put(this.coordinates, this);
             map.setMap(currentMap);
+             */
         }
     }
 }
