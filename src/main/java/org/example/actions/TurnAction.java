@@ -28,23 +28,29 @@ public class TurnAction {
             Iterator<Coordinates> it = keys.iterator();
             while (it.hasNext()) {
                 Coordinates coordinates = it.next();
-                if (mapEntity.get(coordinates) instanceof Herbivore) {
-                    Herbivore herbivore = (Herbivore) mapEntity.get(coordinates);
-                    herbivore.makeMove(map);
-                    Coordinates newHerbivoreCoordinates = herbivore.getCoordinates();
-                    if (mapEntity.containsKey(newHerbivoreCoordinates)) {
-                        if (mapEntity.get(newHerbivoreCoordinates) instanceof Grass) {
-                            if (herbivore.getLife() < herbivore.getMaxLife()) {
-                                herbivore.setLife(herbivore.getLife() + 1);
+                if (removedKeys.contains(coordinates)) {
+                    it.remove();
+                    mapEntity.remove(coordinates);
+                } else {
+                    if (mapEntity.get(coordinates) instanceof Herbivore) {
+                        Herbivore herbivore = (Herbivore) mapEntity.get(coordinates);
+                        herbivore.makeMove(map);
+                        Coordinates newHerbivoreCoordinates = herbivore.getCoordinates();
+                        if (mapEntity.containsKey(newHerbivoreCoordinates)) {
+                            if (mapEntity.get(newHerbivoreCoordinates) instanceof Grass) {
+                                if (herbivore.getLife() < herbivore.getMaxLife()) {
+                                    herbivore.setLife(herbivore.getLife() + 1);
+                                }
+                                removedKeys.add(newHerbivoreCoordinates);
+                            } else {
+                                herbivore.setCoordinates(coordinates);
                             }
-                            it.remove();
-                        } else {
-                            herbivore.setCoordinates(coordinates);
                         }
+                        //mapEntity = map.getMap();
                     }
-                    mapEntity = map.getMap();
                 }
             }
+            map.setMap(mapEntity);
         } else {
             for (Coordinates coordinates: mapEntity.keySet()) {
                 if (mapEntity.get(coordinates) instanceof Predator) {

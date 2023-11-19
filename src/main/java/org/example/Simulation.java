@@ -17,11 +17,16 @@ public class Simulation {
     public static int countTree = 3;
 
     public void nextTurn() {
-        moveCounter++;
-        System.out.println(moveCounter);
-        turnAction = new TurnAction(map);
-        turnAction.turnAction();
-        render.mapUpdate(map);
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+            moveCounter++;
+            System.out.println(moveCounter);
+            turnAction = new TurnAction(map);
+            turnAction.turnAction();
+            render.mapUpdate(map);
+        }
     }
 
     public void startSimulation() {
