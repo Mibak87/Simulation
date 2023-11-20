@@ -55,7 +55,7 @@ public class Predator extends Creature {
                     this.setCoordinates(moveByX);
                 }
             }
-            if (this.coordinates.equals(herbivoreCoordinates)) {
+            /*if (this.coordinates.equals(herbivoreCoordinates)) {
                 Herbivore herbivore = (Herbivore) currentMap.get(herbivoreCoordinates);
                 if (herbivore.life <= this.attackPower) {
                     currentMap.remove(new Coordinates(x, y), this);
@@ -67,6 +67,7 @@ public class Predator extends Creature {
                 }
             }
             map.setMap(currentMap);
+             */
         }
     }
 }

@@ -44,13 +44,13 @@ public class CreateAction {
         }
         //Creation herbivore entity
         for (int i = 1; i <= Simulation.countHerbivore; i++) {
-            Herbivore herbivore = new Herbivore(2,2, generateCoordinates());
+            Herbivore herbivore = new Herbivore(1,2, generateCoordinates());
             newMap.put(herbivore.getCoordinates(),herbivore);
             map.setMap(newMap);
         }
         //Creation predator entity
         for (int i = 1; i <= Simulation.countPredator; i++) {
-            Predator predator = new Predator(3,2,1, generateCoordinates());
+            Predator predator = new Predator(1,2,1, generateCoordinates());
             newMap.put(predator.getCoordinates(),predator);
             map.setMap(newMap);
         }

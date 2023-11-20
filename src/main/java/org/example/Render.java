@@ -8,8 +8,8 @@ import org.example.statics.Tree;
 
 public class Render {
     public void mapUpdate(Map map) {
-        for (int i = 1; i <= map.getHeight(); i++) {
-            for (int j = 1; j <= map.getWidth(); j++) {
+        for (int i = 0; i < map.getHeight(); i++) {
+            for (int j = 0; j < map.getWidth(); j++) {
                 Coordinates currentCoordinates = new Coordinates(i,j);
                 if (map.getMap().containsKey(currentCoordinates)) {
                     Entity entity = map.getMap().get(currentCoordinates);
@@ -34,5 +34,6 @@ public class Render {
             }
             System.out.println();
         }
+        System.out.println(map.toString());
     }
 }

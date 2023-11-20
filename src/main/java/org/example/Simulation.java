@@ -23,9 +23,10 @@ public class Simulation {
             } catch (InterruptedException e) {}
             moveCounter++;
             System.out.println(moveCounter);
-            turnAction = new TurnAction(map);
-            turnAction.turnAction();
+            turnAction = new TurnAction();
+            turnAction.turnAction(map);
             render.mapUpdate(map);
+            System.out.println(map.toString());
         }
     }
 
@@ -35,6 +36,7 @@ public class Simulation {
         createAction.initAction();
         System.out.println(moveCounter);
         render.mapUpdate(map);
+        System.out.println(map.toString());
     }
 
     public void pauseSimulation() {
