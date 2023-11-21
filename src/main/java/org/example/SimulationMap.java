@@ -7,12 +7,12 @@ import org.example.statics.Grass;
 
 import java.util.HashMap;
 
-public class Map {
+public class SimulationMap {
     private HashMap<Coordinates,Entity> map;
     private int width;
     private int height;
 
-    public Map(int width, int height) {
+    public SimulationMap(int width, int height) {
         this.width = width;
         this.height = height;
         HashMap<Coordinates,Entity> map = new HashMap<>();

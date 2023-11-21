@@ -5,7 +5,7 @@ import org.example.actions.CreateAction;
 import org.example.actions.TurnAction;
 
 public class Simulation {
-    private Map map;
+    private SimulationMap simulationMap;
     private int moveCounter = 0;
     private Render render = new Render();
     private CreateAction createAction;
@@ -24,19 +24,19 @@ public class Simulation {
             moveCounter++;
             System.out.println(moveCounter);
             turnAction = new TurnAction();
-            turnAction.turnAction(map);
-            render.mapUpdate(map);
-            System.out.println(map.toString());
+            turnAction.turnAction(simulationMap);
+            render.mapUpdate(simulationMap);
+            System.out.println(simulationMap.toString());
         }
     }
 
     public void startSimulation() {
-        map = new Map(10,10);
-        createAction = new CreateAction(map);
+        simulationMap = new SimulationMap(10,10);
+        createAction = new CreateAction(simulationMap);
         createAction.initAction();
         System.out.println(moveCounter);
-        render.mapUpdate(map);
-        System.out.println(map.toString());
+        render.mapUpdate(simulationMap);
+        System.out.println(simulationMap.toString());
     }
 
     public void pauseSimulation() {

@@ -2,8 +2,7 @@ package org.example.creatures;
 
 import org.example.Coordinates;
 import org.example.Entity;
-import org.example.Map;
-import org.example.creatures.Creature;
+import org.example.SimulationMap;
 
 import java.util.HashMap;
 
@@ -28,10 +27,10 @@ public class Predator extends Creature {
     }
 
     @Override
-    public void makeMove(Map map) {
-        HashMap<Coordinates, Entity> currentMap = map.getMap();
+    public void makeMove(SimulationMap simulationMap) {
+        HashMap<Coordinates, Entity> currentMap = simulationMap.getMap();
         for (int i = 1; i <= this.velocity; i++) {
-            Coordinates herbivoreCoordinates = map.findNearestEntity(this);
+            Coordinates herbivoreCoordinates = simulationMap.findNearestEntity(this);
             Coordinates moveByY = this.coordinates;
             Coordinates moveByX = this.coordinates;
             int y = this.coordinates.getY();
@@ -46,7 +45,7 @@ public class Predator extends Creature {
             } else if (herbivoreCoordinates.getX() < x) {
                 moveByX.setX(x - 1);
             }
-            if (map.findPathLength(moveByX, herbivoreCoordinates) >= map.findPathLength(moveByY, herbivoreCoordinates)) {
+            if (simulationMap.findPathLength(moveByX, herbivoreCoordinates) >= simulationMap.findPathLength(moveByY, herbivoreCoordinates)) {
                 if (!currentMap.containsKey(moveByY) && moveByY.equals(herbivoreCoordinates)) {
                     this.setCoordinates(moveByY);
                 }

@@ -2,35 +2,30 @@ package org.example.actions;
 
 import org.example.Coordinates;
 import org.example.Entity;
-import org.example.Map;
+import org.example.SimulationMap;
 import org.example.creatures.Herbivore;
 import org.example.creatures.Predator;
 import org.example.statics.Grass;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class TurnAction {
 
-    public void turnAction(Map map) {
-        HashMap<Coordinates, Entity> mapEntity = map.getMap();
-        Set<Coordinates> keys = mapEntity.keySet();
+    public void turnAction(SimulationMap simulationMap) {
+        HashMap<Coordinates, Entity> mapEntity = simulationMap.getMap();
         Set<Coordinates> removedKeys = new HashSet<>();
-        double randomNumber = Math.random();
-        if (randomNumber < 0.5) {
-            System.out.println("The Herbivore is moving");
-            Iterator<Coordinates> it = keys.iterator();
-            while (it.hasNext()) {
-                Coordinates coordinates = it.next();
+        Iterator<Map.Entry<Coordinates, Entity>> iterator = mapEntity.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<Coordinates, Entity> entry = iterator.next();
+                Coordinates coordinates = entry.getKey();
+                Entity entity = entry.getValue();
                 if (removedKeys.contains(coordinates)) {
-                    it.remove();
-                    mapEntity.remove(coordinates);
+                    iterator.remove();
+                    //mapEntity.remove(coordinates);
                 } else {
-                    if (mapEntity.get(coordinates) instanceof Herbivore) {
-                        Herbivore herbivore = (Herbivore) mapEntity.get(coordinates);
-                        herbivore.makeMove(map);
+                    if (entity instanceof Herbivore) {
+                        Herbivore herbivore = (Herbivore) entity;
+                        herbivore.makeMove(simulationMap);
                         Coordinates newHerbivoreCoordinates = herbivore.getCoordinates();
                         if (mapEntity.containsKey(newHerbivoreCoordinates)) {
                             if (mapEntity.get(newHerbivoreCoordinates) instanceof Grass) {
@@ -46,21 +41,9 @@ public class TurnAction {
                             mapEntity.put(newHerbivoreCoordinates,herbivore);
                         }
                         //mapEntity = map.getMap();
-                    }
-                }
-            }
-        } else {
-            System.out.println("The Predator is moving");
-            Iterator<Coordinates> it = keys.iterator();
-            while (it.hasNext()) {
-                Coordinates coordinates = it.next();
-                if (removedKeys.contains(coordinates)) {
-                    it.remove();
-                    mapEntity.remove(coordinates);
-                } else {
-                    if (mapEntity.get(coordinates) instanceof Predator) {
-                        Predator predator = (Predator) mapEntity.get(coordinates);
-                        predator.makeMove(map);
+                    } else if(entity instanceof Predator) {
+                        Predator predator = (Predator) entity;
+                        predator.makeMove(simulationMap);
                         Coordinates newPredatorCoordinates = predator.getCoordinates();
                         if (mapEntity.containsKey(newPredatorCoordinates)) {
                             if (mapEntity.get(newPredatorCoordinates) instanceof Herbivore) {
@@ -78,11 +61,9 @@ public class TurnAction {
                         } else {
                             mapEntity.put(newPredatorCoordinates,predator);
                         }
-                        //mapEntity = map.getMap();
                     }
                 }
             }
-        }
-        map.setMap(mapEntity);
+        simulationMap.setMap(mapEntity);
     }
 }

@@ -2,7 +2,7 @@ package org.example.actions;
 
 import org.example.Coordinates;
 import org.example.Entity;
-import org.example.Map;
+import org.example.SimulationMap;
 import org.example.Simulation;
 import org.example.creatures.Herbivore;
 import org.example.creatures.Predator;
@@ -13,14 +13,14 @@ import org.example.statics.Tree;
 import java.util.HashMap;
 
 public class CreateAction {
-    private Map map;
+    private SimulationMap simulationMap;
 
-    public CreateAction(Map map) {
-        this.map = map;
+    public CreateAction(SimulationMap simulationMap) {
+        this.simulationMap = simulationMap;
     }
 
     public void initAction() {
-        HashMap<Coordinates, Entity> newMap = map.getMap();
+        HashMap<Coordinates, Entity> newMap = simulationMap.getMap();
         if (newMap == null) {
             newMap = new HashMap<>();
         }
@@ -28,48 +28,48 @@ public class CreateAction {
         for (int i = 1; i <= Simulation.countGrass; i++) {
             Grass grass = new Grass(generateCoordinates());
             newMap.put(grass.getCoordinates(),grass);
-            map.setMap(newMap);
+            simulationMap.setMap(newMap);
         }
         //Creation rock entity
         for (int i = 1; i <= Simulation.countRock; i++) {
             Rock rock = new Rock(generateCoordinates());
             newMap.put(rock.getCoordinates(),rock);
-            map.setMap(newMap);
+            simulationMap.setMap(newMap);
         }
         //Creation tree entity
         for (int i = 1; i <= Simulation.countTree; i++) {
             Tree tree = new Tree(generateCoordinates());
             newMap.put(tree.getCoordinates(),tree);
-            map.setMap(newMap);
+            simulationMap.setMap(newMap);
         }
         //Creation herbivore entity
         for (int i = 1; i <= Simulation.countHerbivore; i++) {
             Herbivore herbivore = new Herbivore(1,2, generateCoordinates());
             newMap.put(herbivore.getCoordinates(),herbivore);
-            map.setMap(newMap);
+            simulationMap.setMap(newMap);
         }
         //Creation predator entity
         for (int i = 1; i <= Simulation.countPredator; i++) {
             Predator predator = new Predator(1,2,1, generateCoordinates());
             newMap.put(predator.getCoordinates(),predator);
-            map.setMap(newMap);
+            simulationMap.setMap(newMap);
         }
     }
 
     private Coordinates generateCoordinates() {
-        int x = (int) (Math.random() * map.getWidth());
-        int y = (int) (Math.random() * map.getHeight());
+        int x = (int) (Math.random() * simulationMap.getWidth());
+        int y = (int) (Math.random() * simulationMap.getHeight());
         Coordinates coordinates = new Coordinates(x, y);
         while (!checkCoordinates(coordinates)) {
-            x = (int) (Math.random() * map.getWidth());
-            y = (int) (Math.random() * map.getHeight());
+            x = (int) (Math.random() * simulationMap.getWidth());
+            y = (int) (Math.random() * simulationMap.getHeight());
             coordinates = new Coordinates(x, y);
         }
         return coordinates;
     }
 
     private boolean checkCoordinates(Coordinates coordinates) {
-        HashMap<Coordinates,Entity> tempMap = map.getMap();
+        HashMap<Coordinates,Entity> tempMap = simulationMap.getMap();
         if (tempMap != null && tempMap.containsKey(coordinates)) {
             return false;
         } else {

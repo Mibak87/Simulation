@@ -7,12 +7,12 @@ import org.example.statics.Rock;
 import org.example.statics.Tree;
 
 public class Render {
-    public void mapUpdate(Map map) {
-        for (int i = 0; i < map.getHeight(); i++) {
-            for (int j = 0; j < map.getWidth(); j++) {
+    public void mapUpdate(SimulationMap simulationMap) {
+        for (int i = 0; i < simulationMap.getHeight(); i++) {
+            for (int j = 0; j < simulationMap.getWidth(); j++) {
                 Coordinates currentCoordinates = new Coordinates(i,j);
-                if (map.getMap().containsKey(currentCoordinates)) {
-                    Entity entity = map.getMap().get(currentCoordinates);
+                if (simulationMap.getMap().containsKey(currentCoordinates)) {
+                    Entity entity = simulationMap.getMap().get(currentCoordinates);
                     if (entity instanceof Grass) {
                         System.out.print("\uD83C\uDF40");
                     }
@@ -34,6 +34,6 @@ public class Render {
             }
             System.out.println();
         }
-        System.out.println(map.toString());
+        System.out.println(simulationMap.toString());
     }
 }
