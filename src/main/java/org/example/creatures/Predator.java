@@ -27,14 +27,15 @@ public class Predator extends Creature {
     }
 
     @Override
-    public void makeMove(SimulationMap simulationMap) {
+    public Coordinates makeMove(SimulationMap simulationMap) {
         HashMap<Coordinates, Entity> currentMap = new HashMap<>(simulationMap.getMap());
+        Coordinates coordinatesAfterMoving = new Coordinates(this.getCoordinates().getX(),this.getCoordinates().getY());
         for (int i = 1; i <= this.velocity; i++) {
             Coordinates herbivoreCoordinates = simulationMap.findNearestEntity(this);
-            Coordinates moveByY = this.coordinates;
-            Coordinates moveByX = this.coordinates;
             int y = this.coordinates.getY();
             int x = this.coordinates.getX();
+            Coordinates moveByY = new Coordinates(x,y);
+            Coordinates moveByX = new Coordinates(x,y);
             if (herbivoreCoordinates.getY() > y) {
                 moveByY.setY(y + 1);
             } else if (herbivoreCoordinates.getY() < y) {
@@ -47,11 +48,11 @@ public class Predator extends Creature {
             }
             if (simulationMap.findPathLength(moveByX, herbivoreCoordinates) >= simulationMap.findPathLength(moveByY, herbivoreCoordinates)) {
                 if (!currentMap.containsKey(moveByY) && moveByY.equals(herbivoreCoordinates)) {
-                    this.setCoordinates(moveByY);
+                    coordinatesAfterMoving = moveByY;
                 }
             } else {
                 if (!currentMap.containsKey(moveByX) && moveByX.equals(herbivoreCoordinates)) {
-                    this.setCoordinates(moveByX);
+                    coordinatesAfterMoving = moveByX;
                 }
             }
             /*if (this.coordinates.equals(herbivoreCoordinates)) {
@@ -68,5 +69,6 @@ public class Predator extends Creature {
             map.setMap(currentMap);
              */
         }
+        return coordinatesAfterMoving;
     }
 }

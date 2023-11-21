@@ -26,7 +26,6 @@ public class Simulation {
             turnAction = new TurnAction();
             turnAction.turnAction(simulationMap);
             render.mapUpdate(simulationMap);
-            System.out.println(simulationMap.toString());
         }
     }
 
@@ -36,7 +35,6 @@ public class Simulation {
         createAction.initAction();
         System.out.println(moveCounter);
         render.mapUpdate(simulationMap);
-        System.out.println(simulationMap.toString());
     }
 
     public void pauseSimulation() {

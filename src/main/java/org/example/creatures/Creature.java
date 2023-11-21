@@ -37,5 +37,5 @@ public abstract class Creature extends Entity {
 
 
 
-    public abstract void makeMove(SimulationMap simulationMap);
+    public abstract Coordinates makeMove(SimulationMap simulationMap);
 }

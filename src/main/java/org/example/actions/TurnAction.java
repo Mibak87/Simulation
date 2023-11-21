@@ -19,8 +19,7 @@ public class TurnAction {
             if (entity instanceof Herbivore) {
                 Herbivore herbivore = (Herbivore) entity;
                 if (herbivore.getLife() > 0) {
-                    herbivore.makeMove(simulationMap);
-                    Coordinates newHerbivoreCoordinates = herbivore.getCoordinates();
+                    Coordinates newHerbivoreCoordinates = herbivore.makeMove(simulationMap);
                     if (mapEntity.containsKey(newHerbivoreCoordinates)) {
                         if (mapEntity.get(newHerbivoreCoordinates) instanceof Grass) {
                             if (herbivore.getLife() < herbivore.getMaxLife()) {
@@ -29,33 +28,39 @@ public class TurnAction {
                             }
                             mapAfterMoving.put(newHerbivoreCoordinates, herbivore);
                             mapAfterMoving.remove(coordinates);
+                            System.out.println("Herbivore is moving from " + coordinates.toString() + " to " + newHerbivoreCoordinates.toString());
+                            System.out.println("Herbivore eat of the Grass");
                         } else {
                             herbivore.setCoordinates(coordinates);
                         }
                     } else {
                         mapAfterMoving.put(newHerbivoreCoordinates, herbivore);
+                        System.out.println("Herbivore is moving from " + coordinates.toString() + " to " + newHerbivoreCoordinates.toString());
                     }
                 }
             } else if (entity instanceof Predator) {
                 Predator predator = (Predator) entity;
-                predator.makeMove(simulationMap);
-                Coordinates newPredatorCoordinates = predator.getCoordinates();
+                Coordinates newPredatorCoordinates = predator.makeMove(simulationMap);
                 if (mapEntity.containsKey(newPredatorCoordinates)) {
                     if (mapEntity.get(newPredatorCoordinates) instanceof Herbivore) {
                         Herbivore attackedHerbivore = (Herbivore) mapEntity.get(newPredatorCoordinates);
                         if (attackedHerbivore.getLife() <= predator.getAttackPower()) {
                             mapAfterMoving.put(newPredatorCoordinates,predator);
                             mapAfterMoving.remove(coordinates);
+                            System.out.println("Predator is moving from " + coordinates.toString() + " to " + newPredatorCoordinates.toString());
+                            System.out.println("Predator kill of the Herbivore");
                         } else {
                             predator.setCoordinates(coordinates);
                             attackedHerbivore.setLife(attackedHerbivore.getLife() - predator.getAttackPower());
                             mapAfterMoving.put(newPredatorCoordinates,attackedHerbivore);
+                            System.out.println("Predator attack of the Herbivore");
                         }
                     } else {
                         predator.setCoordinates(coordinates);
                     }
                 } else {
                     mapAfterMoving.put(newPredatorCoordinates, predator);
+                    System.out.println("Predator is moving from " + coordinates.toString() + " to " + newPredatorCoordinates.toString());
                 }
             }
 
