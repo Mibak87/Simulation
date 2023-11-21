@@ -28,7 +28,7 @@ public class Predator extends Creature {
 
     @Override
     public void makeMove(SimulationMap simulationMap) {
-        HashMap<Coordinates, Entity> currentMap = simulationMap.getMap();
+        HashMap<Coordinates, Entity> currentMap = new HashMap<>(simulationMap.getMap());
         for (int i = 1; i <= this.velocity; i++) {
             Coordinates herbivoreCoordinates = simulationMap.findNearestEntity(this);
             Coordinates moveByY = this.coordinates;
