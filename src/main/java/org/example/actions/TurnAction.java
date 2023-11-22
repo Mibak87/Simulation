@@ -24,8 +24,8 @@ public class TurnAction {
                         if (mapEntity.get(newHerbivoreCoordinates) instanceof Grass) {
                             if (herbivore.getLife() < herbivore.getMaxLife()) {
                                 herbivore.setLife(herbivore.getLife() + 1);
-                                //mapEntity.put(coordinates,herbivore);
                             }
+                            herbivore.setCoordinates(newHerbivoreCoordinates);
                             mapAfterMoving.put(newHerbivoreCoordinates, herbivore);
                             mapAfterMoving.remove(coordinates);
                             System.out.println("Herbivore is moving from " + coordinates.toString() + " to " + newHerbivoreCoordinates.toString());
@@ -34,7 +34,9 @@ public class TurnAction {
                             herbivore.setCoordinates(coordinates);
                         }
                     } else {
+                        herbivore.setCoordinates(newHerbivoreCoordinates);
                         mapAfterMoving.put(newHerbivoreCoordinates, herbivore);
+                        mapAfterMoving.remove(coordinates);
                         System.out.println("Herbivore is moving from " + coordinates.toString() + " to " + newHerbivoreCoordinates.toString());
                     }
                 }
@@ -45,6 +47,7 @@ public class TurnAction {
                     if (mapEntity.get(newPredatorCoordinates) instanceof Herbivore) {
                         Herbivore attackedHerbivore = (Herbivore) mapEntity.get(newPredatorCoordinates);
                         if (attackedHerbivore.getLife() <= predator.getAttackPower()) {
+                            predator.setCoordinates(newPredatorCoordinates);
                             mapAfterMoving.put(newPredatorCoordinates,predator);
                             mapAfterMoving.remove(coordinates);
                             System.out.println("Predator is moving from " + coordinates.toString() + " to " + newPredatorCoordinates.toString());
@@ -59,7 +62,9 @@ public class TurnAction {
                         predator.setCoordinates(coordinates);
                     }
                 } else {
+                    predator.setCoordinates(newPredatorCoordinates);
                     mapAfterMoving.put(newPredatorCoordinates, predator);
+                    mapAfterMoving.remove(coordinates);
                     System.out.println("Predator is moving from " + coordinates.toString() + " to " + newPredatorCoordinates.toString());
                 }
             }

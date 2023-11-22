@@ -47,11 +47,11 @@ public class Predator extends Creature {
                 moveByX.setX(x - 1);
             }
             if (simulationMap.findPathLength(moveByX, herbivoreCoordinates) >= simulationMap.findPathLength(moveByY, herbivoreCoordinates)) {
-                if (!currentMap.containsKey(moveByY) && moveByY.equals(herbivoreCoordinates)) {
+                if (!currentMap.containsKey(moveByY) || moveByY.equals(herbivoreCoordinates)) {
                     coordinatesAfterMoving = moveByY;
                 }
             } else {
-                if (!currentMap.containsKey(moveByX) && moveByX.equals(herbivoreCoordinates)) {
+                if (!currentMap.containsKey(moveByX) || moveByX.equals(herbivoreCoordinates)) {
                     coordinatesAfterMoving = moveByX;
                 }
             }
