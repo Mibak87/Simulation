@@ -10,11 +10,6 @@ public class Simulation {
     private Render render = new Render();
     private CreateAction createAction;
     private TurnAction turnAction;
-    public static int countHerbivore = 2;
-    public static int countPredator = 2;
-    public static int countGrass = 5;
-    public static int countRock = 5;
-    public static int countTree = 5;
 
     public void nextTurn() {
         while (true) {

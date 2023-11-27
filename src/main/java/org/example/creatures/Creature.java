@@ -9,7 +9,6 @@ import java.util.HashMap;
 public class Creature extends Entity {
     protected final int velocity;
     protected int life;
-    protected Coordinates coordinates;
 
     public Creature(int velocity, int life, Coordinates coordinates) {
         this.velocity = velocity;

@@ -28,6 +28,8 @@ public class TurnAction {
                             herbivore.setCoordinates(newHerbivoreCoordinates);
                             mapAfterMoving.put(newHerbivoreCoordinates, herbivore);
                             mapAfterMoving.remove(coordinates);
+                            GrassCreateAction grassCreateAction = new GrassCreateAction();
+                            grassCreateAction.grassCreate(simulationMap);
                             System.out.println("Herbivore is moving from " + coordinates.toString() + " to " + newHerbivoreCoordinates.toString());
                             System.out.println("Herbivore eat of the Grass");
                         } else {

@@ -11,10 +11,21 @@ public class SimulationMap {
     private HashMap<Coordinates,Entity> map;
     private int width;
     private int height;
+    private int countHerbivore;
+    private int countPredator;
+    private int countGrass;
+    private int countRock;
+    private int countTree;
 
     public SimulationMap(int width, int height) {
         this.width = width;
         this.height = height;
+        int cellCount = width * height;
+        countGrass = (int) (cellCount * 0.05);
+        countRock = (int) (cellCount * 0.05);
+        countTree = (int) (cellCount * 0.05);
+        countHerbivore = (int) (cellCount * 0.02);
+        countPredator = (int) (cellCount * 0.02);
         HashMap<Coordinates,Entity> map = new HashMap<>();
     }
 
@@ -41,6 +52,26 @@ public class SimulationMap {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public int getCountHerbivore() {
+        return countHerbivore;
+    }
+
+    public int getCountPredator() {
+        return countPredator;
+    }
+
+    public int getCountGrass() {
+        return countGrass;
+    }
+
+    public int getCountRock() {
+        return countRock;
+    }
+
+    public int getCountTree() {
+        return countTree;
     }
 
     public Coordinates findNearestEntity(Creature creature) {
@@ -85,6 +116,13 @@ public class SimulationMap {
         int deltaX = Math.abs(coordinates1.getX() - coordinates2.getX());
         int deltaY = Math.abs(coordinates1.getY() - coordinates2.getY());
         return (int) Math.sqrt(deltaY * deltaY + deltaX * deltaX);
+    }
+
+    public void addToMap(Entity entity) {
+        Coordinates coordinates = entity.getCoordinates();
+        if (entity != null && !map.containsKey(coordinates)) {
+            map.put(coordinates,entity);
+        }
     }
 
     @Override
