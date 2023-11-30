@@ -4,6 +4,7 @@ import org.example.Coordinates;
 import org.example.Entity;
 import org.example.SimulationMap;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Predator extends Creature {
@@ -16,6 +17,16 @@ public class Predator extends Creature {
 
     public int getAttackPower() {
         return attackPower;
+    }
+
+    @Override
+    public Coordinates makeMove(SimulationMap simulationMap) {
+        ArrayList<Coordinates> path = simulationMap.findPath(coordinates);
+        if (path.size() >= velocity) {
+            return path.get(path.size() - velocity);
+        } else {
+            return path.get(path.size() - 1);
+        }
     }
 
     @Override

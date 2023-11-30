@@ -4,9 +4,10 @@ import org.example.Coordinates;
 import org.example.Entity;
 import org.example.SimulationMap;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Creature extends Entity {
+public abstract class Creature extends Entity {
     protected final int velocity;
     protected int life;
 
@@ -38,7 +39,8 @@ public class Creature extends Entity {
 
 
 
-    public Coordinates makeMove(SimulationMap simulationMap) {
+    public abstract Coordinates makeMove(SimulationMap simulationMap); /*{
+
         HashMap<Coordinates, Entity> currentMap = new HashMap<>(simulationMap.getMap());
         Coordinates coordinatesAfterMoving = new Coordinates(this.getCoordinates().getX(),this.getCoordinates().getY());
         for (int i = 1; i <= this.velocity; i++) {
@@ -69,4 +71,6 @@ public class Creature extends Entity {
         }
         return coordinatesAfterMoving;
     }
+         */
+
 }

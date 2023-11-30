@@ -6,9 +6,19 @@ public class Coordinates {
     private int x;
     private int y;
 
+    private Coordinates previousCell;
+
     public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Coordinates getPreviousCell() {
+        return previousCell;
+    }
+
+    public void setPreviousCell(Coordinates previousCell) {
+        this.previousCell = previousCell;
     }
 
     public int getX() {
