@@ -37,6 +37,7 @@ public class Herbivore extends Creature {
                 if (life < maxLife) {
                     life++;
                 }
+                simulationMap.setCountGrass(simulationMap.getCountGrass() - 1);
             }
             simulationMap.addToMap(this);
         }

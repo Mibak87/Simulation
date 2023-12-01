@@ -38,6 +38,7 @@ public class Predator extends Creature {
                 if (herbivore.getLife() <= attackPower) {
                     simulationMap.removeFromMap(this);
                     coordinates = newCoordinates;
+                    simulationMap.setCountHerbivore(simulationMap.getCountHerbivore() - 1);
                 } else {
                     herbivore.setLife(herbivore.getLife() - attackPower);
                     simulationMap.addToMap(herbivore);

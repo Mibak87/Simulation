@@ -87,6 +87,14 @@ public class SimulationMap {
         return countTree;
     }
 
+    public void setCountHerbivore(int countHerbivore) {
+        this.countHerbivore = countHerbivore;
+    }
+
+    public void setCountGrass(int countGrass) {
+        this.countGrass = countGrass;
+    }
+
     public void addToMap(Entity entity) {
         Coordinates coordinates = entity.getCoordinates();
         if (entity != null && !map.containsKey(coordinates)) {

@@ -13,6 +13,10 @@ import java.util.*;
 public class TurnAction {
 
     public void turnAction(SimulationMap simulationMap) {
+        int cellCount = simulationMap.getHeight() * simulationMap.getWidth();
+        if (simulationMap.getCountGrass() < (int) (cellCount * 0.05)) {
+            GrassCreateAction.grassCreate(simulationMap);
+        }
         HashMap<Coordinates, Entity> mapEntity = new HashMap<>(simulationMap.getMap());
         for (Coordinates coordinates : mapEntity.keySet()) {
             Entity entity = mapEntity.get(coordinates);
