@@ -39,7 +39,7 @@ public abstract class Creature extends Entity {
 
 
 
-    public abstract Coordinates makeMove(SimulationMap simulationMap); /*{
+    public abstract void makeMove(SimulationMap simulationMap); /*{
 
         HashMap<Coordinates, Entity> currentMap = new HashMap<>(simulationMap.getMap());
         Coordinates coordinatesAfterMoving = new Coordinates(this.getCoordinates().getX(),this.getCoordinates().getY());

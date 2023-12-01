@@ -12,7 +12,7 @@ public class Simulation {
     private TurnAction turnAction;
 
     public void nextTurn() {
-        while (true) {
+        while (simulationMap.isStop()) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {}

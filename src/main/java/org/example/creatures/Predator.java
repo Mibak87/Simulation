@@ -20,12 +20,31 @@ public class Predator extends Creature {
     }
 
     @Override
-    public Coordinates makeMove(SimulationMap simulationMap) {
+    public void makeMove(SimulationMap simulationMap) {
         ArrayList<Coordinates> path = simulationMap.findPath(coordinates);
-        if (path.size() >= velocity) {
-            return path.get(path.size() - velocity);
+        System.out.println(path);
+        if (path == null) {
+            simulationMap.setStop(false);
+            System.out.println("There are no moves available!");
         } else {
-            return path.get(path.size() - 1);
+            if (path.size() > velocity) {
+                Coordinates newCoordinates = path.get(path.size() - velocity);
+                System.out.println("Predator is moving from " + coordinates.toString() + " to " + newCoordinates.toString());
+                simulationMap.removeFromMap(this);
+                coordinates = newCoordinates;
+            } else {
+                Coordinates newCoordinates = path.get(path.size() - 1);
+                Herbivore herbivore = (Herbivore) simulationMap.getMap().get(newCoordinates);
+                if (herbivore.getLife() <= attackPower) {
+                    simulationMap.removeFromMap(this);
+                    coordinates = newCoordinates;
+                } else {
+                    herbivore.setLife(herbivore.getLife() - attackPower);
+                    simulationMap.addToMap(herbivore);
+                }
+
+            }
+            simulationMap.addToMap(this);
         }
     }
 
