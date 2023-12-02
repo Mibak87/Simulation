@@ -34,6 +34,5 @@ public class Render {
             }
             System.out.println();
         }
-        System.out.println(simulationMap);
     }
 }

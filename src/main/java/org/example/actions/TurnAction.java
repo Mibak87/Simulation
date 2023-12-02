@@ -17,6 +17,9 @@ public class TurnAction {
         if (simulationMap.getCountGrass() < (int) (cellCount * 0.05)) {
             GrassCreateAction.grassCreate(simulationMap);
         }
+        if (simulationMap.getCountHerbivore() < (int) (cellCount * 0.02)) {
+            HerbivoreCreateAction.herbivoreCreate(simulationMap);
+        }
         HashMap<Coordinates, Entity> mapEntity = new HashMap<>(simulationMap.getMap());
         for (Coordinates coordinates : mapEntity.keySet()) {
             Entity entity = mapEntity.get(coordinates);
