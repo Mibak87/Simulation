@@ -31,7 +31,7 @@ public class Predator extends Creature {
                 simulationMap.removeFromMap(this);
                 coordinates = newCoordinates;
             } else {
-                Coordinates newCoordinates = path.get(path.size() - 1);
+                Coordinates newCoordinates = path.get(0);
                 Herbivore herbivore = (Herbivore) simulationMap.getMap().get(newCoordinates);
                 if (herbivore.getLife() <= attackPower) {
                     simulationMap.removeFromMap(this);

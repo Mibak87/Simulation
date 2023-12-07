@@ -30,7 +30,7 @@ public class Herbivore extends Creature {
                 coordinates = newCoordinates;
             } else {
                 simulationMap.removeFromMap(this);
-                Coordinates newCoordinates = path.get(path.size() - 1);
+                Coordinates newCoordinates = path.get(0);
                 coordinates = newCoordinates;
                 if (life < maxLife) {
                     life++;

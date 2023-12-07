@@ -50,7 +50,7 @@ public class CreateAction {
         }
         //Creation predator entity
         for (int i = 1; i <= simulationMap.getCountPredator(); i++) {
-            Predator predator = new Predator(1,2,1, generateCoordinates());
+            Predator predator = new Predator(2,2,1, generateCoordinates());
             newMap.put(predator.getCoordinates(),predator);
             simulationMap.setMap(newMap);
         }

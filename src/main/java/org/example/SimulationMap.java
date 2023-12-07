@@ -97,7 +97,7 @@ public class SimulationMap {
 
     public void addToMap(Entity entity) {
         Coordinates coordinates = entity.getCoordinates();
-        if (entity != null && !map.containsKey(coordinates)) {
+        if (entity != null) {
             map.put(coordinates,entity);
         }
     }
