@@ -11,7 +11,7 @@ import org.example.statics.Grass;
 import java.util.*;
 
 public class TurnAction {
-
+    private int herbivoreCount = 0;
     public void turnAction(SimulationMap simulationMap) {
         int cellCount = simulationMap.getHeight() * simulationMap.getWidth();
         if (simulationMap.getCountGrass() < (int) (cellCount * 0.05)) {
@@ -26,7 +26,11 @@ public class TurnAction {
             if (entity instanceof Creature) {
                 Creature creature = (Creature) entity;
                 creature.makeMove(simulationMap);
+                if (creature instanceof Herbivore) {
+                    herbivoreCount++;
+                }
             }
         }
+        simulationMap.setCountHerbivore(herbivoreCount);
     }
 }

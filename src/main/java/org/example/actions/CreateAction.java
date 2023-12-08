@@ -20,39 +20,30 @@ public class CreateAction {
     }
 
     public void initAction() {
-        HashMap<Coordinates, Entity> newMap = simulationMap.getMap();
-        if (newMap == null) {
-            newMap = new HashMap<>();
-        }
         //Creation grass entity
         for (int i = 1; i <= simulationMap.getCountGrass(); i++) {
             Grass grass = new Grass(generateCoordinates());
-            newMap.put(grass.getCoordinates(),grass);
-            simulationMap.setMap(newMap);
+            simulationMap.addToMap(grass);
         }
         //Creation rock entity
         for (int i = 1; i <= simulationMap.getCountRock(); i++) {
             Rock rock = new Rock(generateCoordinates());
-            newMap.put(rock.getCoordinates(),rock);
-            simulationMap.setMap(newMap);
+            simulationMap.addToMap(rock);
         }
         //Creation tree entity
         for (int i = 1; i <= simulationMap.getCountTree(); i++) {
             Tree tree = new Tree(generateCoordinates());
-            newMap.put(tree.getCoordinates(),tree);
-            simulationMap.setMap(newMap);
+            simulationMap.addToMap(tree);
         }
         //Creation herbivore entity
         for (int i = 1; i <= simulationMap.getCountHerbivore(); i++) {
-            Herbivore herbivore = new Herbivore(1,2, generateCoordinates());
-            newMap.put(herbivore.getCoordinates(),herbivore);
-            simulationMap.setMap(newMap);
+            Herbivore herbivore = new Herbivore(1,3,generateCoordinates());
+            simulationMap.addToMap(herbivore);
         }
         //Creation predator entity
         for (int i = 1; i <= simulationMap.getCountPredator(); i++) {
             Predator predator = new Predator(2,2,1, generateCoordinates());
-            newMap.put(predator.getCoordinates(),predator);
-            simulationMap.setMap(newMap);
+            simulationMap.addToMap(predator);
         }
     }
 

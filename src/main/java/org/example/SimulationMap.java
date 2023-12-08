@@ -30,7 +30,6 @@ public class SimulationMap {
         countTree = (int) (cellCount * 0.05);
         countHerbivore = (int) (cellCount * 0.02);
         countPredator = (int) (cellCount * 0.02);
-        HashMap<Coordinates,Entity> map = new HashMap<>();
         stop = true;
     }
 
@@ -96,6 +95,9 @@ public class SimulationMap {
     }
 
     public void addToMap(Entity entity) {
+        if (map == null) {
+            map = new HashMap<>();
+        }
         Coordinates coordinates = entity.getCoordinates();
         if (entity != null) {
             map.put(coordinates,entity);
