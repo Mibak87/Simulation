@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.creatures.Creature;
 import org.example.creatures.Herbivore;
 import org.example.creatures.Predator;
 import org.example.statics.Grass;
@@ -11,13 +10,13 @@ import java.util.HashMap;
 
 public class SimulationMap {
     private HashMap<Coordinates,Entity> map;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private int countHerbivore;
-    private int countPredator;
+    private final int countPredator;
     private int countGrass;
-    private int countRock;
-    private int countTree;
+    private final int countRock;
+    private final int countTree;
 
     private boolean stop;
 
@@ -45,25 +44,12 @@ public class SimulationMap {
         return map;
     }
 
-    public void setMap(HashMap<Coordinates, Entity> map) {
-        this.map = map;
-    }
-
-
     public int getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public int getHeight() {
         return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public int getCountHerbivore() {

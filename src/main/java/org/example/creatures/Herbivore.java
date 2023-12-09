@@ -1,20 +1,14 @@
 package org.example.creatures;
 
 import org.example.Coordinates;
-import org.example.Entity;
 import org.example.SimulationMap;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Herbivore extends Creature {
     private final int maxLife = 2;
     public Herbivore(int velocity, int life, Coordinates coordinates) {
         super(velocity,life,coordinates);
-    }
-
-    public int getMaxLife() {
-        return maxLife;
     }
 
     @Override
@@ -30,8 +24,7 @@ public class Herbivore extends Creature {
                 coordinates = newCoordinates;
             } else {
                 simulationMap.removeFromMap(this);
-                Coordinates newCoordinates = path.get(0);
-                coordinates = newCoordinates;
+                coordinates = path.get(0);
                 if (life < maxLife) {
                     life++;
                 }

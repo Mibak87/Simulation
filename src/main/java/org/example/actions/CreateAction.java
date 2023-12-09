@@ -3,7 +3,6 @@ package org.example.actions;
 import org.example.Coordinates;
 import org.example.Entity;
 import org.example.SimulationMap;
-import org.example.Simulation;
 import org.example.creatures.Herbivore;
 import org.example.creatures.Predator;
 import org.example.statics.Grass;
@@ -13,7 +12,7 @@ import org.example.statics.Tree;
 import java.util.HashMap;
 
 public class CreateAction {
-    private SimulationMap simulationMap;
+    private final SimulationMap simulationMap;
 
     public CreateAction(SimulationMap simulationMap) {
         this.simulationMap = simulationMap;
@@ -61,10 +60,6 @@ public class CreateAction {
 
     private boolean checkCoordinates(Coordinates coordinates) {
         HashMap<Coordinates,Entity> tempMap = simulationMap.getMap();
-        if (tempMap != null && tempMap.containsKey(coordinates)) {
-            return false;
-        } else {
-            return true;
-        }
+        return (tempMap == null || !tempMap.containsKey(coordinates));
     }
 }

@@ -5,8 +5,6 @@ import org.example.Entity;
 import org.example.SimulationMap;
 import org.example.creatures.Creature;
 import org.example.creatures.Herbivore;
-import org.example.creatures.Predator;
-import org.example.statics.Grass;
 
 import java.util.*;
 
