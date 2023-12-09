@@ -4,9 +4,6 @@ package org.example;
 import org.example.actions.CreateAction;
 import org.example.actions.TurnAction;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Simulation {
     private SimulationMap simulationMap;
